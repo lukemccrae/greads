@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-
+var knex = require('./db_connections.js')
 var app = express();
 
 // view engine setup
