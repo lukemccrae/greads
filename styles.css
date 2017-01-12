@@ -1,0 +1,9 @@
+#logo {
+    width: 4em;
+    height: 4em;
+}
+
+#name {
+    color: black;
+    display: inline;
+}
