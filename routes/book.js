@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var knex = require('../../db/knex')
+var knex = require('../db/knex')
 var methodOverride = require('method-override')
 
 /* GET home page. */
