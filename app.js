@@ -33,7 +33,7 @@ app.use('/users', users);
 app.use('/', book)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-    var err = new Error('you seem lost');
+    var err = new Error('404');
     err.status = 404;
     next(err);
 });

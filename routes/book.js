@@ -4,32 +4,42 @@ var knex = require('../db/knex')
 var methodOverride = require('method-override')
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-    knex('book')
-        .select()
-        .then(title => {
-            console.log(title);
-            res.render('book_view', {
-                title: title
-            });
-        });
-});
-
 router.get('/add', function(req, res, next) {
     res.render('add_books')
-});
-
-router.get('/delete', function(req, res, next) {
-    res.render('delete_book')
 });
 
 router.get('/delete/:id', function(req, res, next) {
     res.render('delete_book')
 });
 
+router.get('/edit/:id', function(req, res, next) {
+    knex('book')
+        .where('id', req.params.id)
+        .then(title => {
+            res.render('edit_book', {
+                title: title
+            });
+        });
+});
+
+router.put('/edit/:id', function(req, res) {
+    knex('book')
+        .where('id', req.params.id)
+        .update(req.body)
+        .then(res.render('book_view'))
+})
+
+router.get('/', function(req, res, next) {
+    knex('book')
+        .select()
+        .then(title => {
+            res.render('book_view', {
+                title: title
+            });
+        });
+});
+
 router.post('/add', function(req, res, next) {
-    console.log('hi');
-    console.log(req.body);
     const newBook = {
         title: req.body.title,
         genre: req.body.genre,
@@ -55,7 +65,5 @@ router.delete('/delete/:id', (req, res) => {
             message: 'book deleted'
         }))
 });
-
-
 
 module.exports = router;
